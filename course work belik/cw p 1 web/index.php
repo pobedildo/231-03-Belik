@@ -1,76 +1,83 @@
+<?php
+require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskManager - Система управления задачами</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Главная страница</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f7fa;
+            color: #333;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .navbar {
+            display: flex;
+            justify-content: space-around;
             padding: 20px;
+            background-color: #f8f9fa;
         }
-        .logo {
-            width: 64px;
-            height: 64px;
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
         }
-        /* Дополнительные стили */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .signature {
+            margin-top: 50px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="logo.png" alt="TaskManager Logo" class="logo">
-            <h1>TaskManager</h1>
-            <p>Организуйте свои задачи эффективно</p>
-        </header>
+    <div class="navbar">
+        <a href="index.php">Главная</a>
+        <a href="dashboard.php">Дашборд</a>
+        <a href="tariffs.php">Тарифы</a>
+        <a href="about.php">О продукте</a>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="profile.php">Личный кабинет</a>
+        <?php else: ?>
+            <a href="login.php">Войти\Зарегистрироваться</a>
+        <?php endif; ?>
+    </div>
 
-        <div class="auth-forms">
-            <div class="login-form">
-                <h2>Вход</h2>
-                <form action="login.php" method="POST">
-                    <div class="form-group">
-                        <label for="phone">Телефон:</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Пароль:</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit">Войти</button>
-                </form>
-            </div>
-
-            <div class="register-form">
-                <h2>Регистрация</h2>
-                <form action="register.php" method="POST">
-                    <div class="form-group">
-                        <label for="reg-phone">Телефон:</label>
-                        <input type="tel" id="reg-phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-password">Пароль:</label>
-                        <input type="password" id="reg-password" name="password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm-password">Повторите пароль:</label>
-                        <input type="password" id="confirm-password" name="confirm_password" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="policy" name="policy" required>
-                        <label for="policy">Согласен с <a href="policy.pdf" target="_blank">политикой обработки персональных данных</a></label>
-                    </div>
-                    <button type="submit">Зарегистрироваться</button>
-                </form>
-            </div>
-        </div>
+    <div class="hero">
+        <h1>Организуйте работу и жизнь.</h1>
+        <p>Упростите жизнь себе и своей команде, используя менеджер задач и список дел №1 в мире</p>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="dashboard.php" class="cta-button">Начать</a>
+        <?php else: ?>
+            <a href="login.php" class="cta-button">Начать</a>
+        <?php endif; ?>
+        <div class="signature"></div>
     </div>
 </body>
 </html>
