@@ -12,4 +12,4 @@
 
 📌project 07 - course work (full) ✔️
 
-📌project 08 - Windows Forms app "students" ❌
+📌project 08 - Windows Forms app "students" ✔️
